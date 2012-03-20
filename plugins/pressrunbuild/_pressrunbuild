@@ -1,0 +1,13 @@
+#compdef pressrunbuild
+#autoload
+
+_arguments \
+  '(-h --help)'{-h,--help}'[show help]' \
+  '--project+[Project folder to use]:project directory:_files -/' \
+  '--output+[Location to save ipa files to]:output directory:_files -/' \
+  '(--verbose)--verbose[give more output]' \
+  '(--no-checkout)--no-checkout[Do not checkout from git]' \
+  '(--no-build)--no-build[Do not build ipas just create project]' \
+  '1: :->cmds' \
+  && ret=0
+  
