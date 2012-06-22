@@ -1,6 +1,9 @@
 #compdef pressrunbuild
 #autoload
 
+#if using oh-my-zsh, create a folder called pressrunbuild in ~/.oh-my-zsh/plugins and
+#add this file, then in your .zshrc file, add pressrunbuild to your plugins (plugins=(... pressrunbuild))
+
 _arguments \
   '(-h --help)'{-h,--help}'[show help]' \
   '--project+[Project folder to use]:project directory:_files -/' \
@@ -8,6 +11,10 @@ _arguments \
   '(--verbose)--verbose[give more output]' \
   '(--no-checkout)--no-checkout[Do not checkout from git]' \
   '(--no-build)--no-build[Do not build ipas just create project]' \
+  '(--no-push)--no-push[Do not check for push permissions]' \
+  '(--no-dist)--no-dist[Do not create a distribution build]' \
+  '(--no-test)--no-test[Do not create a test build]' \
+  '(--wildcard)--wildcard[Allow a wildcard profile]' \
   '1: :->cmds' \
   && ret=0
   
