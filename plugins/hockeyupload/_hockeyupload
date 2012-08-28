@@ -1,0 +1,17 @@
+#compdef hockeyupload
+#autoload
+
+#if using oh-my-zsh, create a folder called hockeyupload in ~/.oh-my-zsh/plugins and
+#add this file, then in your .zshrc file, add hockeyupload to your plugins (plugins=(... hockeyupload))
+
+_arguments \
+  '(-h --help)'{-h,--help}'[show help]' \
+  '(--bundle-id)--bundle-id[Bundle id of app]' \
+  '--thumbnail+[Thumbnail image to use]:thumbnail file:_files -/' \
+  '--app+[App file to use]:app file:_files -/' \
+  '(--version)--version[Version of build]' \
+  '(--title)--title[Title of app]' \
+  '--app-prod+[App store file to use]:app store file:_files -/' \
+  '(--hockey-address)--hockey-address[Hockey server to use]' \
+  '1: :->cmds' \
+  && ret=0

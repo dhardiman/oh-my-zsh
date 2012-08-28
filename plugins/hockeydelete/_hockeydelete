@@ -1,0 +1,12 @@
+#compdef hockeydelete
+#autoload
+
+#if using oh-my-zsh, create a folder called hockeydelete in ~/.oh-my-zsh/plugins and
+#add this file, then in your .zshrc file, add hockeydelete to your plugins (plugins=(... hockeydelete))
+
+_arguments \
+  '(-h --help)'{-h,--help}'[show help]' \
+  '(--bundle-id)--bundle-id[Bundle id of app]' \
+  '(--hockey-address)--hockey-address[Hockey server to use]' \
+  '1: :->cmds' \
+  && ret=0
