@@ -174,7 +174,7 @@ function git_prompt_long_sha() {
 
 # Get the status of the working tree
 git_prompt_status() {
-  INDEX=$(git status --porcelain 2> /dev/null)
+  INDEX=$(git status --porcelain -b 2> /dev/null)
   STATUS=""
   if $(echo "$INDEX" | grep '^?? ' &> /dev/null); then
     STATUS="$ZSH_THEME_GIT_PROMPT_UNTRACKED$STATUS"
@@ -196,11 +196,25 @@ git_prompt_status() {
   fi
   if $(echo "$INDEX" | grep '^ D ' &> /dev/null); then
     STATUS="$ZSH_THEME_GIT_PROMPT_DELETED$STATUS"
+  elif $(echo "$INDEX" | grep '^D  ' &> /dev/null); then
+    STATUS="$ZSH_THEME_GIT_PROMPT_DELETED$STATUS"
   elif $(echo "$INDEX" | grep '^AD ' &> /dev/null); then
     STATUS="$ZSH_THEME_GIT_PROMPT_DELETED$STATUS"
   fi
+  if $(git rev-parse --verify refs/stash >/dev/null 2>&1); then
+    STATUS="$ZSH_THEME_GIT_PROMPT_STASHED$STATUS"
+  fi
   if $(echo "$INDEX" | grep '^UU ' &> /dev/null); then
     STATUS="$ZSH_THEME_GIT_PROMPT_UNMERGED$STATUS"
+  fi
+  if $(echo "$INDEX" | grep '^## .*ahead' &> /dev/null); then
+    STATUS="$ZSH_THEME_GIT_PROMPT_AHEAD$STATUS"
+  fi
+  if $(echo "$INDEX" | grep '^## .*behind' &> /dev/null); then
+    STATUS="$ZSH_THEME_GIT_PROMPT_BEHIND$STATUS"
+  fi
+  if $(echo "$INDEX" | grep '^## .*diverged' &> /dev/null); then
+    STATUS="$ZSH_THEME_GIT_PROMPT_DIVERGED$STATUS"
   fi
   echo $STATUS
 }
