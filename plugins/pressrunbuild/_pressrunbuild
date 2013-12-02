@@ -15,6 +15,7 @@ _arguments \
   '(--no-dist)--no-dist[Do not create a distribution build]' \
   '(--no-test)--no-test[Do not create a test build]' \
   '(--wildcard)--wildcard[Allow a wildcard profile]' \
+  '(--version)--version[What version are we running]' \
   '1: :->cmds' \
   && ret=0
-  
+
